@@ -24,4 +24,9 @@ public class StudentService {
         return repository.save(student);
     }
 
+    // Get Student By ID
+    public Student getStudentById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
 }
