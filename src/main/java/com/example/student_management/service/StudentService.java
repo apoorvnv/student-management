@@ -3,6 +3,9 @@ package com.example.student_management.service;
 import com.example.student_management.entity.Student;
 import com.example.student_management.repository.StudentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -28,5 +31,16 @@ public class StudentService {
     public Student getStudentById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
+
+    public Student updateStudent(Long id, Student student) {
+        Student existingStudent = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        existingStudent.setName(student.getName());
+        existingStudent.setName(student.getName());
+        existingStudent.setAge(student.getAge());
+
+        return repository.save(existingStudent);
     }
 }
