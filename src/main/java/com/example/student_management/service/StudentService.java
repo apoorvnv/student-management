@@ -33,6 +33,7 @@ public class StudentService {
                 .orElseThrow(() -> new RuntimeException("Student not found"));
     }
 
+    // Update Student
     public Student updateStudent(Long id, Student student) {
         Student existingStudent = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
@@ -42,5 +43,10 @@ public class StudentService {
         existingStudent.setAge(student.getAge());
 
         return repository.save(existingStudent);
+    }
+
+    // Delete Student
+    public void deleteStudent(Long id) {
+        repository.deleteById(id);
     }
 }
